@@ -106,3 +106,5 @@ __pycache__/
 test/
 .vscode/
 .gitignore
+dataset
+Pipfile
