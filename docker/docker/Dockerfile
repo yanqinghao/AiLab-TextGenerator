@@ -28,7 +28,7 @@ RUN pip install --upgrade pip
 
 COPY --from=builder /build /workspace
 
-RUN pip install -r requirements.txt
+RUN pip install -r requirements.txt && pip install ./whl/cpu/torch-1.2.0+cpu-cp37-cp37m-manylinux1_x86_64.whl && rm -rf whl
 
 ENTRYPOINT [ "/sbin/my_init", "--" ]
 
