@@ -178,6 +178,7 @@ def main(
     model_path="model/final_model",
     fast_pattern=False,
     length=-1,
+    save_samples=False,
     save_samples_path=".",
 ):
     device = "0,1,2,3"
@@ -188,7 +189,6 @@ def main(
     tokenizer_path = "cache/vocab.txt"
     no_wordpiece = False
     segment = False
-    save_samples = False
     repetition_penalty = 1.0
 
     if segment:

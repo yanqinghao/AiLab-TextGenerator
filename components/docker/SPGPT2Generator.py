@@ -25,6 +25,7 @@ def SPGPT2Generator(context):
         model_path=args.model,
         fast_pattern=args.fastPattern,
         length=args.length,
+        save_samples=True,
         save_samples_path=args.outputData,
     )
     return args.outputData
