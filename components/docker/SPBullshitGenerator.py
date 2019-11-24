@@ -3,7 +3,7 @@ from __future__ import absolute_import, print_function
 
 from suanpan.app.arguments import String
 from suanpan.app import app
-from utils.generator import make_bullshit
+from utils.bosh_generator import make_bullshit
 
 
 @app.param(String(key="topic", default="中午吃什么"))
