@@ -1,4 +1,4 @@
-transformers
+transformers==2.1.0
 tb-nightly
 future
 thulac
