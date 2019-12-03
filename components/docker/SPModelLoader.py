@@ -6,7 +6,7 @@ from suanpan.docker.arguments import Folder, String
 from suanpan.storage import StorageProxy
 
 
-@app.param(String(key="models", default="prose", help="prose,"))
+@app.param(String(key="models", default="prose", help="prose,grover"))
 @app.param(String(key="storageType", default="oss"))
 @app.output(Folder(key="outputModel"))
 def SPModelLoader(context):
