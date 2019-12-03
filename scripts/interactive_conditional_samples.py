@@ -5,6 +5,7 @@ import tensorflow as tf
 import numpy as np
 from train.modeling import GroverModel, GroverConfig, sample
 from tokenization import tokenization
+from suanpan.log import logger
 
 
 def extract_generated_target(output_tokens, tokenizer):
@@ -84,10 +85,10 @@ def gpt2_ml_main(**kwargs):
 
         saver = tf.train.Saver()
         saver.restore(sess, model_ckpt_args)
-        output = ""
-        text = input_text_args
+        output = []
         for i in range(samples_args):
-            print("Sample,", i + 1, " of ", samples_args)
+            text = input_text_args
+            logger.info("Sample,{} of {}".format(i + 1, samples_args))
             line = tokenization.convert_to_unicode(text)
             bert_tokens = tokenizer.tokenize(line)
             encoded = tokenizer.convert_tokens_to_ids(bert_tokens)
@@ -116,7 +117,11 @@ def gpt2_ml_main(**kwargs):
                     )
                     gens.append(extraction["extraction"])
 
-            l = re.findall(".{1,70}", gens[0].replace("[UNK]", "").replace("##", ""))
-            sample_text = "\n".join(["Sample,{} of {}".format(i + 1, samples_args)] + l)
-            output += sample_text
+            l = re.findall(
+                ".{1,70}", gens[0].replace("[UNK]", "").replace("##", "")
+            )
+            sample_text = "\n".join(
+                ["Sample,{} of {}".format(i + 1, samples_args)] + l
+            )
+            output.append("\n".join(l))
         return output
