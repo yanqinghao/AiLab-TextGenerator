@@ -190,6 +190,7 @@ def main(
     no_wordpiece = False
     segment = False
     repetition_penalty = 1.0
+    output = []
 
     if segment:
         from tokenizations import tokenization_bert_word_level as tokenization_bert
@@ -248,6 +249,7 @@ def main(
                 print(info)
                 text = "".join(text).replace("##", "").strip()
                 print(text)
+                output.append(text)
                 if save_samples:
                     samples_file.write(info)
                     samples_file.write(text)
@@ -260,6 +262,7 @@ def main(
             if save_samples:
                 samples_file.close()
             break
+    return output
 
 
 if __name__ == "__main__":
