@@ -66,10 +66,11 @@ def merge_bullshit(samples, length):
     for text in samples:
         topics = []
         for i in re.split("[\n。]", text):
-            if i.endswith("。"):
-                topics.append(i)
-            else:
-                topics.append(i + "。")
+            if len(i.split("。")[0]) > 0:
+                if i.endswith("。"):
+                    topics.append(i)
+                else:
+                    topics.append(i + "。")
         tmp = str()
         while len(tmp) < length:
             branch = random.randint(0, 100)
@@ -82,11 +83,11 @@ def merge_bullshit(samples, length):
         tmp = re.split("x", tmp)
         tmp_res = []
         for i, j in enumerate(tmp):
-            if i == len(tmp)-1:
+            if i == len(tmp) - 1:
                 tmp_res.append(j)
             else:
                 tmp_res.append(j)
-                if i <= len(topics)-1:
+                if i <= len(topics) - 1:
                     tmp_res.append(topics[i].split("。")[0])
                 else:
                     tmp_res.append(topics[0].split("。")[0])
