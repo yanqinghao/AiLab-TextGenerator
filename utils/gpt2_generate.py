@@ -247,7 +247,7 @@ def main(
                         text[i] = "\n"
                 info = "=" * 40 + " SAMPLE " + str(generated) + " " + "=" * 40 + "\n"
                 print(info)
-                text = "".join(text).replace("##", "").strip()
+                text = "".join(text).replace("[UNK]", "").replace("##", "").strip()
                 print(text)
                 output.append(text)
                 if save_samples:
