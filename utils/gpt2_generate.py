@@ -180,16 +180,16 @@ def main(
     length=-1,
     save_samples=False,
     save_samples_path=".",
+    temperature=1.0,
+    repetition_penalty=1.0,
 ):
     device = "0,1,2,3"
     batch_size = 1
-    temperature = 1.0
     topk = 8
     topp = 0.0
     tokenizer_path = "cache/vocab.txt"
     no_wordpiece = False
     segment = False
-    repetition_penalty = 1.0
     output = []
 
     if segment:

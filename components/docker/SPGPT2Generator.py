@@ -11,10 +11,10 @@ from utils.bosh_generator import make_bullshit, merge_bullshit
 
 
 @app.input(Folder(key="model"))
-@app.param(String(key="modelType", default="mixed", help="bullshit, gpt-2, mixed"))
-@app.param(String(key="prefix", default="本市发生中重度污染过程，14时全市PM2.5浓度均值达到重度污染级别。",))
+@app.param(String(key="modelType", default="gpt-2", help="bullshit, gpt-2, mixed"))
+@app.param(String(key="prefix", default="受不利气象条件影响，昨日锡城空气质量指数超过200，处重度污染水平。",))
 @app.param(Int(key="nsamples", default=2))
-@app.param(Bool(key="fastPattern", default=True))
+@app.param(Bool(key="fastPattern", default=False))
 @app.param(Int(key="length", default=800))
 @app.output(String(key="outputData"))
 def SPGPT2Generator(context):
@@ -33,6 +33,8 @@ def SPGPT2Generator(context):
                 length=args.length,
                 save_samples=False,
                 save_samples_path=args.outputData,
+                temperature=1.3,
+                repetition_penalty=1.1,
             )
         else:
             params = {
